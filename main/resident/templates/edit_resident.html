@@ -1,0 +1,17 @@
+{% extends 'main/layout.html' %}
+
+
+{% block title %}
+<title>Зміна інформації про мешканця</title>
+{% endblock %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_table }}
+    <input type="submit" value="Оновити">
+</form>
+
+<script src="{% static '/js/app.js' %}"></script>
+
+{% endblock %}

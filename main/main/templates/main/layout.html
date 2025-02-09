@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://kit.fontawesome.com/21da2941dd.js" crossorigin="anonymous"></script>
+{% load static %}
+<link rel="stylesheet" href="{% static 'main/css/style.css' %}">
+<script src="{% static 'main/js/app.js' %}"></script>
+
+<head>
+    <meta charset="UTF-8">
+    <div class="container text-center">
+    <img src="{%static 'main/img/logo.jpg' %}" class="img-fluid" style="max-width: 10%;">
+        <h5>House Manager</h5>
+    </div>
+
+    {% block title %}{% endblock %}
+</head>
+<body>
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+<footer>
+    <p>Сайт "House Manager". Авторство учня STEP Academy групи Р41: Кравченко Марка. Всі права захищені 2025 (C)</p>
+</footer>
+</html>

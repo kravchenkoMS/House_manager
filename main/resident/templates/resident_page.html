@@ -1,0 +1,18 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}
+<title>Сторінка мешканця</title>
+{% endblock %}
+
+{% block content %}
+<form>
+    {{ form.as_table }}
+    <p>Вітаємо на Вашій сторінці, {{ resident.name }} .</p>
+    <br>
+    <a href="resident/choose_table_r">Переглянути таблиці з інформацією про будинок <i class="fa-solid fa-lock"></i></a>
+    <br>
+    <a href="resident/edit_resident">Відредагувати інформацію про себе в системі <i class="fa-solid fa-user"></i></a>
+    <br>
+    <a href="resident/remove_resident">Видалити інформацію про себе з системи <i class="fa-solid fa-user"></i></a>
+</form>
+{% endblock %}
