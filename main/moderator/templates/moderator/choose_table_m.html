@@ -1,0 +1,27 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}
+<title>Інформаційні таблиці модератора</title>
+{% endblock %}
+
+{% block content %}
+<form>
+  {{ form.as_table }}
+      <p>Експорт файлів: (формат .xlsx)</p>
+      <a href="{% url 'export_residents_info_m' %}">Завантажити таблицю з інформацією про мешканців</a>
+      <br>
+      <a href="{% url 'export_flats_info_m' %}">Завантажити таблицю з квартирами</a>
+      <br>
+      <p>Імпорт файлів: (формат .xlsx)</p>
+      <div action="{% url 'import_flats_m' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="excel_file" accept=".xlsx">
+        <button type="submit">Завантажити таблицю з квартирами</button>
+      </div>
+      <div action="{% url 'import_residents_m' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="excel_file" accept=".xlsx">
+        <button type="submit">Завантажити таблицю з мешканцями</button>
+      </div>
+</form>
+{% endblock %}

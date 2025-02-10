@@ -19,6 +19,10 @@
             <td>{{ form.surname }}</td>
         </tr>
         <tr>
+            <td>{{ form.username.label_tag }}</td>
+            <td>{{ form.username }}</td>
+        </tr>
+        <tr>
             <td>{{ form.password.label_tag }}</td>
             <td>{{ form.password }}</td>
         </tr>
@@ -48,6 +52,7 @@
         </tr>
     </table>
 
-    <button type="submit">Зареєструватися</button>
+    <button type="submit">Зареєструватися</button><br><br>
+    <a href="{% url 'login_r' %}">Вхід за логіном</a>
 </form>
 {% endblock %}

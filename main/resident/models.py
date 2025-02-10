@@ -21,7 +21,7 @@ class Resident(models.Model):
     surname = models.CharField("Фамілія", max_length=50)
     phone_number = models.CharField("Номер телефону", max_length=19, unique=True)
 
-    username = models.CharField("Username", max_length=50, blank=True, null=True)
+    username = models.CharField("Username", max_length=50)
     password = models.CharField("Пароль", max_length=19)
 
     has_pet = models.BooleanField(default=False, verbose_name="Маю улюбленця") # або має улюбленця, або не має улюбленця (так/ні)

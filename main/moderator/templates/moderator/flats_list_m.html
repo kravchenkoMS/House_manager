@@ -5,16 +5,14 @@
 {% endblock %}
 
 {% block content %}
-<a href="{% url 'register_flat_m' %}">Додати квартиру</a>
+<a href="{% url 'register_flat_m' %}">Додати квартиру</a><br>
 <a href="{% url 'moderator_page' %}">Назад</a>
 
 {% for i in flats %}
-{% form.as_table %}
 <div>
   <p>Номер квартири: {{i.number}}</p>
   <p>Поверх: {{i.floor}}</p><br>
   <p>Кількість кімнат: {{i.room_amount}}</p><br>
-  <p>Кількість мешканців: {{i.residents_amount}}</p><br>
   <p>Куплена/орендована: {{i.bought}}</p><br>
 
   <a href="{% url 'edit_flat_m' i.id %}">Змінити дані про квартиру</a><br>

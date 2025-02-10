@@ -1,6 +1,7 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth.hashers import check_password
 from django.core.checks import messages
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 from django.views.generic import DeleteView, UpdateView
 from django.http import HttpResponse
 from pandas import *
@@ -24,36 +25,35 @@ class ResidentUpdateViewModerator(UpdateView):
 
 class FlatDeleteView(DeleteView):
     model = Flat
-    success_url = 'moderator/moderator_page.html'
-    template_name = 'moderator/remove_flat.html'
+    success_url = reverse_lazy('moderator_page')
+    template_name = 'moderator/remove_flat_m.html'
 
 class FlatUpdateView(UpdateView):
     model = Flat
-    template_name = 'moderator/edit_flat.html'
     form_class = FlatForm
-    success_url = "moderator/moderator_page.html"
+    template_name = 'moderator/edit_flat_m.html'
+    success_url = '/moderator/flats_list_m'
 
+    def get_object(self, queryset=None):
+        id = self.kwargs.get('id')
+        return Flat.objects.get(id=id)
 
 def show_login_m(request):
     if request.method == "POST":
         username = request.POST.get('username')
         password = request.POST.get('password')
-        moderator = authenticate(request,
-                                username=username,
-                                password=password)
 
-        if moderator is not None:
-            if moderator.is_active:  # Перевірка, чи активний користувач
-                login(request, moderator)
-                return redirect("/moderator_page")
+        try:
+            moderator = Moderator.objects.get(username=username)
+            if check_password(password, moderator.password):
+                request.session['moderator_id'] = moderator.id
+                return redirect("moderator_page")
             else:
-                messages.error(request, "Ваш обліковий запис не активний.")
-        else:
-            messages.error(request, "Невірно введені дані. Спробуйте ще раз.")
+                messages.error(request, "Невірний пароль.")
+        except Moderator.DoesNotExist:
+            messages.error(request, "Такого модератора не існує.")
 
-        return render(request, 'login_m.html')
-
-    return render(request, 'login_m.html')
+    return render(request, 'moderator/login_m.html')
 
 
 def show_moderator_page(request):
@@ -80,9 +80,9 @@ def show_register_flat_m(request):
     if request.method == 'POST':
         form = FlatForm(request.POST)
         if form.is_valid():
-            resident = form.save(commit=False)
-            resident.save()
-            return redirect('/moderator_page')
+            flat = form.save(commit=False)
+            flat.save()
+            return redirect('/moderator/flats_list_m')
     else:
         form = FlatForm()
     data = {'form': form}
@@ -112,7 +112,7 @@ def export_residents_info_m(request):
 
 def export_flat_info_m(request):
     residents = Flat.objects.all().values(
-        'number', 'floor', 'room_amount', 'residents_amount', 'bought')
+        'number', 'floor', 'room_amount', 'bought')
     df = DataFrame(residents)
 
     response = HttpResponse(content_type='application/ms-excel')
@@ -121,7 +121,7 @@ def export_flat_info_m(request):
     return response
 
 
-def import_residents(request):
+def import_residents_m(request):
     if request.method == 'POST' and request.FILES.get('excel_file'):
         excel_file = request.FILES['excel_file']
         try:
@@ -150,7 +150,7 @@ def import_residents(request):
     return HttpResponse("<h4>Файл не завантажено</h4>")
 
 
-def import_flats(request):
+def import_flats_m(request):
     if request.method == 'POST' and request.FILES.get('excel_file'):
         excel_file = request.FILES['excel_file']
         try:
@@ -162,8 +162,7 @@ def import_flats(request):
                     defaults={
                         'floor': row['floor'],
                         'room_amount': row['room_amount'],
-                        'bought': row['bought'],
-                        'residents_amount': row['residents_amount']
+                        'bought': row['bought']
                     }
                 )
 

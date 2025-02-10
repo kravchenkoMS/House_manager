@@ -1,0 +1,19 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}
+<title>Сторінка модератора</title>
+{% endblock %}
+
+{% block content %}
+<form>
+    {{ form.as_table }}
+    <p>Вітаємо, модераторе! Вдачної роботи.</p>
+    <br><br><br>
+    <a href="choose_table_m">Переглянути таблиці з інформацією про будинок <i class="fa-solid fa-table-list"></i></a>
+    <br>
+    <a href="flats_list_m">Переглянути списки квартир в системі <i class="fa-solid fa-table-list"></i></a>
+    <br>
+    <a href="residents_list_m">Переглянути списки мешканців в системі <i class="fa-solid fa-table-list"></i></a>
+    <br>
+</form>
+{% endblock %}

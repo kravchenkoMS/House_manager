@@ -7,12 +7,18 @@
 {% block content %}
 <form>
     {{ form.as_table }}
-    <p>Вітаємо на Вашій сторінці, {{ resident.name }} .</p>
+    <p>Вітаємо на Вашій сторінці, {{resident.name}} {{resident.surname}}!</p>
+    <br><br><br><br>
+    <p>Оберіть бажану функцію:</p>
     <br>
-    <a href="resident/choose_table_r">Переглянути таблиці з інформацією про будинок <i class="fa-solid fa-lock"></i></a>
+    <a href="choose_table_r">Переглянути таблиці з інформацією про будинок <i class="fa-solid fa-table"></i></a>
     <br>
-    <a href="resident/edit_resident">Відредагувати інформацію про себе в системі <i class="fa-solid fa-user"></i></a>
+    <a href="flats_list_r">Переглянути списки квартир Вашого будинку <i class="fa-solid fa-table-list"></i></a>
     <br>
-    <a href="resident/remove_resident">Видалити інформацію про себе з системи <i class="fa-solid fa-user"></i></a>
+    <a href="residents_list_r">Переглянути списки жителів Вашого будинку <i class="fa-solid fa-table-list"></i></a>
+    <br>
+    <a href="edit_resident">Відредагувати інформацію про себе в системі <i class="fa-solid fa-user"></i></a>
+    <br>
+    <a href="remove_resident">Видалити інформацію про себе з системи <i class="fa-solid fa-user"></i></a>
 </form>
 {% endblock %}

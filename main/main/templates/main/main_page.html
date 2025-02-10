@@ -4,13 +4,15 @@
 <title>Головна сторінка</title>
 {% endblock %}
 
-{% block content %} <!-- сторінка входу в систему #todo: вирішити оформлення -->
-    <h1>Головне меню</h1>
+{% block content %}
+<h1>Головне меню</h1>
+{{ form.as_table }}
+<form>
     <p>Це головне вікно сайту "House Managment" <i class="fa-regular fa-building"></i></p>
     <p>Увійдіть, будь ласка, в систему для подальших дій.</p>
-    <br>
+    <br><br><br><br>
     <a href="moderator/login_m">Увійти як модератор <i class="fa-solid fa-lock"></i></a>
-    <br>
+    <br><br><br>
     <a href="resident/login_r">Увійти як мешканець <i class="fa-solid fa-user"></i></a>
-
+</form>
 {% endblock %}

@@ -1,19 +1,17 @@
 {% extends 'main/layout.html' %}
 
 {% block title %}
-<title>Список квартир</title>
+<title>Список мешканців</title>
 {% endblock %}
 
 {% block content %}
-<a href="{% url 'resident_page' %}">Назад</a>
 {% for i in flats %}
-{% form.as_table %}
 <div>
-  <p>Номер квартири: {{i.number}}</p>
-  <p>Поверх: {{i.floor}}</p><br>
-  <p>Кількість кімнат: {{i.room_amount}}</p><br>
-  <p>Кількість мешканців: {{i.residents_amount}}</p><br>
-  <p>Куплена/орендована: {{i.bought}}</p><br>
+  <p>Номер квартири: {{ i.number }}</p>
+  <p>Поверх: {{ i.floor }}</p>
+  <p>Кількість кімнат: {{ i.room_amount }}</p>
+  <p>Чи вона куплена?: {{ i.bought }}</p>
+  <p>Кількість мешканців: {{ i.residents_amount }}</p><br><br>
 </div>
 {% endfor %}
 {% endblock %}

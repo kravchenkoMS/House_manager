@@ -10,17 +10,9 @@
         <p>Введіть username:</p>
         <input type="text" name="username" required><br>
         <p>Введіть пароль:</p>
-        <input type="text" name="password" required><br>
+        <input type="password" name="password" required><br>
         <button type="submit">Увійти</button><br>
         <br>
         <a href="{% url 'main_page' %}">Назад</a>
     </form>
-
-{% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-                <li>{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
 {% endblock %}
