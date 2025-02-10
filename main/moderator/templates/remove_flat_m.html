@@ -1,10 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'main/layout.html' %}
 
-</body>
-</html>
+{% block title %}
+<title>Видалення квартири</title>
+{% endblock %}
+
+{% block content %}
+<h1>Ви впевнені, що бажаєте видалити квартиру</h1>
+<form method="post">
+    {% csrf_token %}
+    <br>
+    <button type="submit">Так, я впевнений - Видалити квартиру</button>
+</form>
+
+<a href="{% url 'flats_list_m' %}">Назад</a>
+
+{% endblock %}

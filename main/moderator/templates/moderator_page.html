@@ -1,10 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'main/layout.html' %}
 
-</body>
-</html>
+{% block title %}
+<title>Сторінка модератора</title>
+{% endblock %}
+
+{% block content %}
+<form>
+    {{ form.as_table }}
+    <p>Вітаємо, модераторе! Вдачної роботи.</p>
+    <br>
+    <a href="moderator/choose_table_m">Переглянути таблиці з інформацією про будинок</a>
+    <br>
+    <a href="moderator/edit_resident">Переглянути списки квартир в системі</a>
+    <br>
+    <a href="moderator/edit_resident">Переглянути списки мешканців в системі</a>
+    <br>
+</form>
+{% endblock %}

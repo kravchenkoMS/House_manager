@@ -1,0 +1,20 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}
+<title>Список мешканців</title>
+{% endblock %}
+
+{% block content %}
+<a href="{% url 'resident_page' %}">Назад</a>
+{% for i in residents %}
+{% form.as_table %}
+<div>
+  <p>Ім'я та фамілія: {{i.name, i.surname}}</p>
+  <p>Номер телефону: {{i.phone_number}}</p><br>
+  <p>Номер квартири: {{i.flat}}</p><br>
+  <p>Чи мають тваринку: {{i.has_pet}}</p><br>
+  <p>Чи мають машину: {{i.has_car}}</p><br>
+  <p>Номер телефону: {{i.phone_number}}</p><br>
+</div>
+{% endfor %}
+{% endblock %}

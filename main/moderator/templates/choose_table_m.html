@@ -1,10 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'main/layout.html' %}
 
-</body>
-</html>
+{% block title %}
+<title>Інформаційні таблиці модератора</title>
+{% endblock %}
+
+{% block content %}
+<form>
+  {{ form.as_table }}
+    <p>Експорт файлів: (формат .xlsx)</p>
+    <a href="{% url 'export_residents_info' %}">Завантажити таблицю з інформацією про мешканців</a>
+    <br>
+    <a href="{% url 'export_flats_info' %}">Завантажити таблицю з квартирами</a>
+    <br>
+    <p>Імпорт файлів: (формат .xlsx)</p>
+    <a href="{% url 'import_residents' %}">Підвантажити таблицю з мешканцями</a>
+    <br>
+    <a href="{% url 'import_flats' %}">Підвантажити таблицю з квартирами</a>
+    <br>
+</form>
+{% endblock %}

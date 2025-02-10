@@ -1,10 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'main/layout.html' %}
 
-</body>
-</html>
+{% block title %}
+<title>Увійти як модератор</title>
+{% endblock %}
+
+{% block content %}
+    <form method = "post">
+        {% csrf_token %}
+        <p>Введіть username:</p>
+        <input type="text" name="username" required><br>
+        <p>Введіть пароль:</p>
+        <input type="text" name="password" required><br>
+        <button type="submit">Увійти</button><br>
+        <br>
+        <a href="{% url 'main_page' %}">Назад</a>
+    </form>
+
+{% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li>{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}

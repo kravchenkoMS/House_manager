@@ -2,7 +2,6 @@ from .models import Resident
 from django.forms import ModelForm, TextInput, CheckboxInput
 
 class ResidentForm(ModelForm):
-
     class Meta:
         model = Resident
 

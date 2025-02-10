@@ -6,7 +6,16 @@
 
 {% block content %}
 <form>
-  {{ form.as_p }}
-  <!-- #todo: розібратись з таблицями -->
+  {{ form.as_table }}
+  <p>Завантаження інформаційних таблиць (формат таблиць Excel (.xlsx)):</p>
+  <a href="{% url 'export_residents_info' %}">Таблиця з інформацією про мешканців Вашого дому</a>
+  <br>
+  <a href="{% url 'export_flats_info' %}">Таблиця з квартирами Вашого дому</a>
+  <br>
+  <a href="{% url 'export_residents_with_cars' %}">Таблиця з мешканцями, що мають машини</a>
+  <br>
+  <a href="{% url 'export_residents_with_pets' %}">Таблиця з мешканцями, що мають улюбленців</a>
+  <br>
+  <a href="{% url 'export_bought_flats' %}">Таблиця з орендованими квартирами</a>
 </form>
 {% endblock %}
