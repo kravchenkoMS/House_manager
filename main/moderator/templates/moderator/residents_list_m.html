@@ -10,14 +10,14 @@
 
 {% for i in residents %}
 <div>
-  <p>Ім'я та фамілія: {{i.name}} {{i.surname}}</p>
-  <p>Номер телефону: {{i.phone_number}}</p>
-  <p>Номер квартири: {{i.flat}}</p>
-  <p>Чи мають тваринку: {{i.has_pet}}</p>
-  <p>Чи мають машину: {{i.has_car}}</p>
-  <p>Номер телефону: {{i.phone_number}}</p><br>
+  <p>Ім'я та фамілія: {{ i.name }} {{ i.surname }}</p>
+  <p>Номер телефону: {{ i.phone_number }}</p>
+  <p>Номер квартири: {{ i.flat }}</p>
+  <p>Чи мають тваринку: {{ i.has_pet }}</p>
+  <p>Чи мають машину: {{ i.has_car }}</p>
+  <p>Номер телефону: {{ i.phone_number }}</p><br>
 
-  <a href="{% url 'resident_update_m' i.id %}">Змінити дані про користувача</a><br>
+  <a href="{% url 'edit_resident_m' i.id %}">Змінити дані про користувача</a><br>
   <a href="{% url 'remove_resident_m' i.id %}">Видалити користувача</a><br><br><br>
 </div>
 {% endfor %}

@@ -1,0 +1,17 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}
+<title>Підтвердження</title>
+{% endblock %}
+
+{% block content %}
+<h1>Ви впевнені, що бажаєте видалити Ваші дані з бази 'House Manager'?</h1>
+<form method="post">
+    {% csrf_token %}
+    <br>
+    <button type="submit">Так, вийти з системи</button>
+</form>
+
+<a href="{% url 'main_page' %}">Назад</a>
+
+{% endblock %}

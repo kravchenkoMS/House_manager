@@ -10,7 +10,7 @@ from .forms import ResidentForm
 from .models import Resident, Flat
 
 
-class ResidentUpdateView(UpdateView): #todo чи вірні посилання??
+class ResidentUpdateView(UpdateView):
     model = Resident
     template_name = 'edit_resident.html'
     fields = ['username','name', 'surname', 'phone_number',
@@ -22,19 +22,9 @@ class ResidentUpdateView(UpdateView): #todo чи вірні посилання??
 
 class ResidentDeleteView(DeleteView):
     model = Resident
-    success_url = reverse_lazy('moderator_page')
-    template_name = 'remove_resident_m.html'
+    success_url = reverse_lazy('main_page')
+    template_name = 'remove_resident_r.html'
 
-class FlatUpdateView(UpdateView):
-    model = Flat
-    fields = ['number', 'floor', 'room_amount', 'bought']
-    template_name = 'moderator/edit_flat_m.html'
-    success_url = reverse_lazy('flats_list_m')
-
-class FlatDeleteView(DeleteView):
-    model = Flat
-    success_url = reverse_lazy('moderator_page')
-    template_name = 'remove_resident_m.html'
 
 def show_resident_page(request, resident_id):
     resident = get_object_or_404(Resident, id=resident_id)
